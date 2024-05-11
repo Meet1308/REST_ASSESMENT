@@ -14,41 +14,41 @@ import jakarta.ws.rs.core.MediaType;
 
 @Path("persons")
 public class PersonResources {
-	
+
 	PersonDao dao = new PersonDao();
-	
+
 	@GET
 	@Path("allperson")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Person> getPerson(){
+	public List<Person> getPerson() {
 		return dao.getAllPerson();
 	}
-	
+
 	@GET
 	@Path("getpesonbyid/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Person getPersonById(@PathParam("id") int id) {
 		return dao.getPersonById(id);
 	}
-	
+
 	@POST
 	@Path("addperson")
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Person> addPerson(Person p) {
 		return dao.addPerson(p);
 	}
-	
+
 	@DELETE
 	@Path("deleteperson/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Person> deletePerson(@PathParam("id") int id) {
-		return dao.deletePerson(id);
+	public void deletePerson(@PathParam("id") int id) {
+		this.dao.deletePerson(id);
 	}
-	
+
 	@PUT
 	@Path("updateperson/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Person> updatePerson(@PathParam("id") int id, Person p) {
-		return dao.updatePerson(id, p.getName());
+	public void updatePerson(@PathParam("id") int id, Person p) {
+		this.dao.updatePerson(p);
 	}
 }
